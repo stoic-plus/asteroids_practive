@@ -1,11 +1,10 @@
 class NasaFacade
-  def initialize(start_date, end_date)
-    @start_date = start_date
-    @end_date = end_date
+  def initialize(nasa_key, start_date, end_date)
+    @nasa_key = nasa_key
   end
 
   def most_dangerous_day
-    
+
   end
 
   private
