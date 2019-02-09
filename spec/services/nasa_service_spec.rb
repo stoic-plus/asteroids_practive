@@ -2,11 +2,11 @@ require 'rails_helper'
 
 describe NasaService, type: :service do
   describe 'class methods' do
-    context '.most_dangerous_day' do
-      it 'returns day with the most potentially_dangerous_asteroid given date range' do
-        service = NasaService.new
-
-        expect(service.most_dangerous_day("2018-01-01", "2018-01-07")).to eq("2018-01-01")
+    context '.neo_feed' do
+      it 'returns list of asteroids given date range' do
+        service = NasaService.new(ENV["NASA_KEY"])
+        asteroids = service.neo_feed("2018-01-01", "2018-01-07")
+        binding.pry
       end
     end
   end
