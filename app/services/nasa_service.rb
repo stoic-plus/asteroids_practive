@@ -3,14 +3,14 @@ class NasaService
     @api_key = api_key
   end
 
-  def self.neo_feed(start_date, end_date)
-    response = conn.get do
+  def neo_feed(start_date, end_date)
+    response = conn.get do |req|
       req.url "neo/rest/v1/feed?"
       req.params["api_key"] = @api_key
       req.params['start_date'] = start_date
       req.params['end_date'] = end_date
     end
-    JSON.parse(response.body, symbolize_keys: true)
+    JSON.parse(response.body, symbolize_names: true)[:near_earth_objects]
   end
 
   private
@@ -20,7 +20,7 @@ class NasaService
   # end
 
   def conn
-    Farday.new(url: "https://api.nasa.gov") do |faraday|
+    Faraday.new(url: "https://api.nasa.gov") do |faraday|
       faraday.adapter  Faraday.default_adapter
     end
   end
