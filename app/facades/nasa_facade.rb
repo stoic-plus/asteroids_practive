@@ -4,8 +4,8 @@ class NasaFacade
   end
 
   def most_dangerous_day(start_date, end_date)
-    asteroids = asteroids_for_range(start_date, end_date)
-    binding.pry
+   dangerous = get_dangerous(asteroids_for_range(start_date, end_date))
+   dangerous.group_by{|asteroid| asteroid.date }.max_by{|date, asteroids| asteroids.count }[0]
   end
 
   private
@@ -15,9 +15,17 @@ class NasaFacade
   end
 
   def asteroids_for_range(start_date, end_date)
-    asteroids = service.neo_feed(start_date, end_date)
-    asteroids.map do |date, near_earth_objects|
-      Asteroid.new(date, near_earth_objects)
+    dates_and_asteroids = service.neo_feed(start_date, end_date)
+    asteroids = []
+    dates_and_asteroids.each do |date, space_objects|
+      space_objects.each do |raw_asteroid|
+        asteroids.push(Asteroid.new(date, raw_asteroid))
+      end
     end
+    asteroids
+  end
+
+  def get_dangerous(asteroids)
+    asteroids.select{ |asteroid| asteroid.hazardous }
   end
 end
