@@ -5,7 +5,7 @@ class NasaFacade
 
   def most_dangerous_day(start_date, end_date)
    dangerous = get_dangerous(asteroids_for_range(start_date, end_date))
-   dangerous.group_by{|asteroid| asteroid.date }.max_by{|date, asteroids| asteroids.count }[0]
+   dangerous.group_by{|asteroid| asteroid.date }.max_by{|date, asteroids| asteroids.count }
   end
 
   private
