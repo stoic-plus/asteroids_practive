@@ -15,8 +15,9 @@ describe 'Most Dangerous Day' do
         expect(current_path).to eq(most_dangerous_day_path)
       end
 
-      it "shows heading 'Most Dangerous Day'" do
+      it "shows heading 'Most Dangerous Day' and the day" do
         expect(page).to have_content("Most Dangerous Day")
+        expect(page).to have_content("Most dangerous: January 1, 2018")
       end
 
       it 'shows entered date range' do
