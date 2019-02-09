@@ -24,7 +24,7 @@ describe 'Most Dangerous Day' do
         expect(page).to have_content("January 1, 2018 - January 7, 2018")
       end
 
-      xit 'shows 3 asteroids' do
+      it 'shows 3 asteroids' do
         expect(page).to have_content("Name: (2014 KT76)")
         expect(page).to have_content("NEO Reference ID: 3672906")
 

@@ -1,2 +1,7 @@
 <h1>Most Dangerous Day</h1>
 <p><%= @start_date %> - <%= @end_date %></p>
+<p>Most dangerous: <%= @most_dangerous_date %></p>
+<% @dangerous_asteroids.each do |a| %>
+  <p>Name: <%= a.name %></p>
+  <p>NEO Reference ID: <%= a.neo_reference_id %></p>
+<% end %>
