@@ -25,14 +25,11 @@ describe 'Most Dangerous Day' do
       end
 
       it 'shows 3 asteroids' do
-        expect(page).to have_content("Name: (2014 KT76)")
-        expect(page).to have_content("NEO Reference ID: 3672906")
-
-        expect(page).to have_content("Name: (2001 LD)")
-        expect(page).to have_content("NEO Reference ID: 3078262")
-
-        expect(page).to have_content("Name: (2017 YR1)")
-        expect(page).to have_content("NEO Reference ID: 3794979")
+        dangerous_asteroids = NasaFacade.new(ENV["NASA_KEY"]).most_dangerous_day("2018-01-01", "2018-01-07")[1]
+        dangerous_asteroids.each do |asteroid|
+          expect(page).to have_content("Name: #{asteroid.name}")
+          expect(page).to have_content("NEO Reference ID: #{asteroid.neo_reference_id}")
+        end
       end
     end
   end
