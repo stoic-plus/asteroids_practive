@@ -8,6 +8,11 @@ class NasaFacade
    dangerous.group_by{|asteroid| asteroid.date }.max_by{|date, asteroids| asteroids.count }
   end
 
+  def neo_lookup(user_id, neo_reference_id)
+    asteroid = service.neo_lookup(neo_reference_id)
+    ApiAsteroid.new(user_id, asteroid)
+  end
+
   private
 
   def service
